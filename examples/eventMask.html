@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <script type="text/javascript" src="../deps/rapheal.js"></script>
+    <script type="text/javascript" src="../src/rapheal.helper.js"></script>
+</head>
+<body>
+<div class='setfont_test'></div>
+<script>
+    var r = new Raphael(document.getElementsByClassName('setfont_test')[0], 500, 600);
+    var elBig = r.rect(30, 30, 100, 100).attr({'fill': '#000000'});
+    var elSmall = r.circle(80, 80, 15).attr({'fill': '#ff0000'});
+    r.eventMask([elBig, elSmall]).hover(function () {
+        elBig.attr({'fill': '#00ff00'});
+    }, function () {
+        elBig.attr({'fill': '#000000'});
+    });
+</script>
+</body>
+</html>

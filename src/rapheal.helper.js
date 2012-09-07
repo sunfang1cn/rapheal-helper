@@ -17,7 +17,7 @@
       for (var i = 0, l = els.length; i < l; i++) {
         if (typeof els[i].getBBox === 'function') {
           var _box = els[i].getBBox();
-          els[i].__area = _box.width() * _box.height();
+          els[i].__area = _box.width * _box.height;
           if (!maxBoxEl || maxBoxEl.__area <= els[i].__area) {
             maxBoxEl = els[i];
           }
@@ -105,7 +105,7 @@
       var st = fontStr[i].toLowerCase();
       if (st === 'bold' || st === 'normal') {
         fontWeight = st;
-      } else if (st.indexOf('px') >= 1 && st.indexOf('px') + 3 === st.length) {
+      } else if (st.indexOf('px') >= 1 && st.indexOf('px') + 2 === st.length) {
         fontSize = st;
         continue;
       } else if (st.length > 2) {
@@ -113,14 +113,18 @@
       }
     }
     this._fontStyleAttr = this._fontStyleAttr || {};
+    this._fontStyleAttr.font = '';
     if (fontWeight) {
       this._fontStyleAttr['font-weight'] = fontWeight;
+      this._fontStyleAttr.font += fontWeight + ' ';
     }
     if (fontSize) {
       this._fontStyleAttr['font-size'] = fontSize;
+      this._fontStyleAttr.font += fontSize + ' ';
     }
     if (fontFamily) {
-      this._fontStyleAttr['font-family'] = fontFamily;
+      this._fontStyleAttr['font-family'] = fontFamily
+      this._fontStyleAttr.font += fontFamily + ' ';
     }
   };
   var _r_text = R.fn.text;
@@ -144,8 +148,9 @@
     this.prev = zMaxEl;
     this.next = zMaxEl.next;
     zMaxEl.next = this;
-    this.parentNode.removeChild(this);
-    this.parentNode.insertBefore(this, this.next);
+    var _parent = this.node.parentNode;
+    _parent.removeChild(this.node);
+    _parent.insertBefore(this.node, this.next.node);
     return this;
   };
 

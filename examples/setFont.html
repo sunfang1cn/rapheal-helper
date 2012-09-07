@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <script type="text/javascript" src="../deps/rapheal.js"></script>
+    <script type="text/javascript" src="../src/rapheal.helper.js"></script>
+</head>
+<body>
+<div class='setfont_test'></div>
+<script>
+    var r = new Raphael(document.getElementsByClassName('setfont_test')[0], 500, 600);
+    r.setFontStyle('20px Simsun bold');
+    r.text(200, 20, '20px simsun jiacu');
+    r.text(200, 40, '25px simsun jiacu').attr({'font-size': 25});
+    r.setFontStyle('Arial normal');
+    r.text(200, 70, '20px Arial putong');
+</script>
+</body>
+</html>
