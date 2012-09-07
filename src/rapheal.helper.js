@@ -25,7 +25,7 @@
       }
     }
     maxBoxEl = maxBoxEl.clone();
-    maxBoxEl.toSetFront(els).attr({'opacity': 0});
+    maxBoxEl.attr({'opacity': 0});
     return maxBoxEl;
   };
 
